@@ -4,8 +4,8 @@ import ObservableHelper from '../../helpers/Observable';
 import './Search.css';
 
 interface IState {
-  searchText: string,
-  networkType: string
+  searchText: string;
+  networkType: string;
 }
 
 class Search extends React.Component<{}, IState> {
@@ -36,6 +36,11 @@ class Search extends React.Component<{}, IState> {
 
     await doc.sync();
     doc = this.formatDate(doc);
+
+    if (Array.from(doc.blocks).length < 1) {
+      doc = undefined;
+    }
+
     ObservableHelper.fire('onSearch', doc);
   }
 
