@@ -1,11 +1,26 @@
 import * as React from 'react';
+import ObservableHelper from 'src/helpers/Observable';
 import Header from '../Header/Header';
+import Search from '../Search/Search';
 import './App.css';
 
 class App extends React.Component {
+
+  public componentWillMount() {
+    ObservableHelper.on('onSearch', (payload: any) => {
+      // tslint:disable-next-line:no-console
+      console.log('Fired!');
+      // tslint:disable-next-line:no-console
+      console.log(payload)
+    });
+  }
+
   public render() {
     return (
-      <Header />
+      <div className="AppComp">
+        <Header />
+        <Search />
+      </div>
     );
   }
 }
