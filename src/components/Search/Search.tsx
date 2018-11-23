@@ -22,9 +22,13 @@ class Search extends React.Component<{}, IState> {
   }
 
   public async searchTag(e: React.FormEvent) {
+    const { searchText, networkType } = this.state;
+
     e.preventDefault();
 
-    const { searchText, networkType } = this.state;
+    if (!searchText.trim()) {
+      return;
+    }
 
     // tslint:disable-next-line:no-string-literal
     const perpera = window['perpera'];
