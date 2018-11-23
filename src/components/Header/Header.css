@@ -1,0 +1,50 @@
+.HeaderComp {
+  background: var(--color-chalk);
+  height: 280px;
+}
+
+.HeaderComp .container {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.HeaderComp .title {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.HeaderComp .slogan {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 1rem 0 2rem;
+}
+
+.HeaderComp .slogan a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+  padding: 2px 0;
+  transition: border 0.2s linear;
+}
+
+.HeaderComp .slogan a:hover {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.HeaderComp .by {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.HeaderComp .by img {
+  margin-left: 1rem;
+}
