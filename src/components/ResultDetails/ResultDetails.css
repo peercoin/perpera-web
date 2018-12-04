@@ -4,3 +4,18 @@
   box-shadow: 0 5px 20px rgba(0,0,0,0.16);
   padding: 1.8rem 1.7rem;
 }
+
+.ResultDetailsComp .label {
+  font-size: 15px;
+  color: var(--color-dark);
+}
+
+.ResultDetailsComp .value {
+  font-size: 15px;
+  color: var(--color-dark);
+}
+
+.ResultDetailsComp .value.green {
+  font-size: 17px;
+  color: var(--color-green);
+}

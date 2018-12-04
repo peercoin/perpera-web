@@ -12,7 +12,7 @@ class App extends React.Component {
       // tslint:disable-next-line:no-console
       console.log('Fired!');
       // tslint:disable-next-line:no-console
-      console.log(payload)
+      console.log(payload);
     });
   }
 

@@ -4,7 +4,7 @@ import ResultDetails from '../ResultDetails/ResultDetails';
 import './Result.css';
 
 interface IState {
-  result: object | undefined;
+  result: any;
   isSearchArrived: boolean;
 }
 
@@ -20,7 +20,15 @@ class Result extends React.Component<{}, IState> {
   }
 
   public componentWillMount() {
-    ObservableHelper.on('onSearch', (result: object | undefined) => {
+    ObservableHelper.on('onSearch', (result: any) => {
+      if (result.status === 'empty') {
+        this.setState({
+          isSearchArrived: false,
+          result: undefined
+        });
+        return;
+      }
+
       this.setState({
         isSearchArrived: true,
         result
@@ -35,9 +43,9 @@ class Result extends React.Component<{}, IState> {
       resultComp = (
         <h2 key="a" className="waiting-message">Waiting for a search above.</h2>
       );
-    } else if (this.state.result) {
+    } else if (this.state.result.doc) {
       resultComp = (
-        <ResultDetails doc={this.state.result} />
+        <ResultDetails doc={this.state.result.doc} />
       );
     } else {
       resultComp = (

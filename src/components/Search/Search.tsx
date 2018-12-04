@@ -27,6 +27,7 @@ class Search extends React.Component<{}, IState> {
     e.preventDefault();
 
     if (!searchText.trim()) {
+      ObservableHelper.fire('onSearch', {status: 'empty'});
       return;
     }
 
@@ -41,7 +42,7 @@ class Search extends React.Component<{}, IState> {
       doc = undefined;
     }
 
-    ObservableHelper.fire('onSearch', doc);
+    ObservableHelper.fire('onSearch', {status: 'search', doc});
   }
 
   public formatDate(doc: any) {

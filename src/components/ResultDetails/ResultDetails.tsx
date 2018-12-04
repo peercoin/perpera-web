@@ -9,7 +9,10 @@ class ResultDetails extends React.Component<IProps> {
   public render() {
     return (
       <div className="ResultDetailsComp">
-        <h1>Details!</h1>
+        <div className="data">
+          <div className="label">Showing Revisions for Tag:</div>
+          <div className="value green">{this.props.doc.tag}</div>
+        </div>
       </div>
     );
   }
