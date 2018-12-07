@@ -1,11 +1,13 @@
 import { DateTime } from 'luxon';
 import * as React from 'react';
 import ObservableHelper from '../../helpers/Observable';
+import Loader from '../Loader/Loader';
 import './Search.css';
 
 interface IState {
   searchText: string;
   networkType: string;
+  isLoading: boolean;
 }
 
 class Search extends React.Component<{}, IState> {
@@ -16,6 +18,7 @@ class Search extends React.Component<{}, IState> {
     this.setSearchText = this.setSearchText.bind(this);
 
     this.state = {
+      isLoading: false,
       networkType: 'peercoin',
       searchText: ''
     }
@@ -26,10 +29,15 @@ class Search extends React.Component<{}, IState> {
 
     e.preventDefault();
 
+
+    // If search is empty or only spaces, ignore request
+    // and fire event saying field is empty
     if (!searchText.trim()) {
       ObservableHelper.fire('onSearch', {status: 'empty'});
       return;
     }
+
+    this.setState({ isLoading: true });
 
     // tslint:disable-next-line:no-string-literal
     const perpera = window['perpera'];
@@ -43,6 +51,8 @@ class Search extends React.Component<{}, IState> {
     }
 
     ObservableHelper.fire('onSearch', {status: 'search', doc});
+
+    this.setState({ isLoading: false });
   }
 
   public formatDate(doc: any) {
@@ -65,6 +75,7 @@ class Search extends React.Component<{}, IState> {
   public render() {
     return (
       <form className="SearchComp" onSubmit={this.searchTag}>
+        {this.state.isLoading && <Loader />}
         <input type="text" className="search-field" placeholder="Search document tag" onInput={this.setSearchText} />
         <button className="search-btn">
           <img src="/img/icon-search.svg" alt="Search" width="24" />
