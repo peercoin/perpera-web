@@ -1,0 +1,58 @@
+.RevisionComp {
+  position: relative;
+  border: 1px solid rgba(30, 38, 31, 0.2);
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.RevisionComp.is-current {
+  background: var(--color-chalk);
+  border-color: var(--color-chalk);
+}
+
+.RevisionComp .current-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 20px;
+  top: -13px;
+  height: 26px;
+  padding: 0.2rem 1.5rem;
+  background: var(--color-green);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 1.3rem;
+}
+
+.RevisionComp .revision-info {
+  padding: 1.2rem;
+  border-bottom: 1px solid rgba(30, 38, 31, 0.2);
+}
+
+.RevisionComp.is-current .revision-info {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.RevisionComp .revision-info:last-child {
+  border-bottom: none;
+}
+
+.RevisionComp .revision-info .revision-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.RevisionComp.is-current .revision-info .revision-title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.RevisionComp .revision-info .revision-value {
+  font-size: 1.4rem;
+  color: var(--color-green);
+  margin-top: 0.2rem;
+}
+
+.RevisionComp.is-current .revision-info .revision-value {
+  color: #fff;
+}

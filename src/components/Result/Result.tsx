@@ -41,7 +41,7 @@ class Result extends React.Component<{}, IState> {
 
     if (!this.state.isSearchArrived) {
       resultComp = (
-        <h2 key="a" className="waiting-message">Waiting for a search above.</h2>
+        <h2 key="a" className="waiting-message"><span>Waiting for a search above.</span></h2>
       );
     } else if (this.state.result.doc) {
       resultComp = (
@@ -49,7 +49,7 @@ class Result extends React.Component<{}, IState> {
       );
     } else {
       resultComp = (
-        <h2 key="b" className="waiting-message">No results found for this document tag.</h2>
+        <h2 key="b" className="waiting-message"><span>No results found for this document tag.</span></h2>
       )
     }
 
