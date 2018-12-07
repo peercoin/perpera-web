@@ -42,3 +42,9 @@
   opacity: 1;
   cursor: pointer;
 }
+
+@media screen and (max-width: 545px) {
+  .SearchComp .search-field {
+    border-radius: 0;
+  }
+}

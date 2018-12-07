@@ -51,6 +51,7 @@
   font-size: 1.4rem;
   color: var(--color-green);
   margin-top: 0.2rem;
+  word-break: break-all;
 }
 
 .RevisionComp.is-current .revision-info .revision-value {
