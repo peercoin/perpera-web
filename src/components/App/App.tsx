@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Add from 'src/components/Add/Add';
 import ObservableHelper from 'src/helpers/Observable';
 import Header from '../Header/Header';
 import Result from '../Result/Result';
@@ -21,6 +22,7 @@ class App extends React.Component {
       <div className="AppComp">
         <Header />
         <Search />
+        <Add />
         <Result />
       </div>
     );
