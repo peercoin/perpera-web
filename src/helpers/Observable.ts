@@ -12,7 +12,7 @@ export default class ObservableHelper {
   private static triggers = {};
 
   private static getTriggers(eventName: string) {
-    return this.triggers[eventName];
+    return this.triggers[eventName] || [];
   }
 
   private static registerTrigger(eventName: string, cb: (payload?: any) => void) {
