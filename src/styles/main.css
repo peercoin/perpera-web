@@ -20,6 +20,10 @@ body {
   padding: 0 10px;
 }
 
+.bold-green {
+  color: var(--color-green);
+}
+
 @keyframes fade-in-scale {
   0% {
     opacity: 0;

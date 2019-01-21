@@ -2,6 +2,7 @@ import * as React from 'react';
 import Add from 'src/components/Add/Add';
 import ObservableHelper from 'src/helpers/Observable';
 import Header from '../Header/Header';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import Result from '../Result/Result';
 import Search from '../Search/Search';
 import './App.css';
@@ -10,9 +11,7 @@ class App extends React.Component {
 
   public componentWillMount() {
     ObservableHelper.on('onSearch', (payload: any) => {
-      // tslint:disable-next-line:no-console
       console.log('Fired!');
-      // tslint:disable-next-line:no-console
       console.log(payload);
     });
   }
@@ -24,6 +23,7 @@ class App extends React.Component {
         <Search />
         <Add />
         <Result />
+        <RegisterPopup />
       </div>
     );
   }

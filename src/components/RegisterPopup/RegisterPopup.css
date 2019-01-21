@@ -1,0 +1,132 @@
+.RegisterPopupComp {
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-chalk-60);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.RegisterPopupComp.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.RegisterPopupComp.open .register-popup {
+  animation: fade-in-scale 0.5s var(--easing-natural) forwards;
+  animation-delay: 0.1s;
+}
+
+.RegisterPopupComp .register-popup {
+  position: relative;
+  width: 100%;
+  max-width: 446px;
+  min-height: 200px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 28px 0;
+  opacity: 0;
+}
+
+.RegisterPopupComp .register-popup .close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 0;
+}
+
+.RegisterPopupComp .register-popup p {
+  padding: 0 28px;
+  text-align: center;
+  color: var(--color-chalk);
+  opacity: 0.6;
+}
+
+.RegisterPopupComp .register-popup .error-msg {
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-red);
+
+}
+
+.RegisterPopupComp .register-popup .file {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.RegisterPopupComp .register-popup .hash {
+  position: relative;
+  padding: 15px 32px 10px;
+  margin: 25px 0;
+  background: var(--color-chalk-04);
+  border-top: 1px solid var(--color-chalk-04);
+  border-bottom: 1px solid var(--color-chalk-04);
+  text-align: center;
+}
+
+.RegisterPopupComp .register-popup .hash .label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -30px;
+  width: 60px;
+  background: var(--color-chalk);
+  border-radius: 30px;
+  padding: 3px 0;
+  text-align: center;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.RegisterPopupComp .register-popup .hash .hash-string {
+  color: var(--color-chalk);
+  word-break: break-all;
+}
+
+.form {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.form .form-field {
+  display: block;
+  width: 100%;
+  height: 56px;
+  background: var(--color-chalk-04);
+  border: none;
+  border-top: 1px solid var(--color-chalk-04);
+  border-bottom: 1px solid var(--color-chalk-04);
+  color: var(--color-chalk);
+  text-align: center;
+  margin-top: 5px;
+  font-size: 1.4rem;
+  font-family: inherit;
+}
+
+.form .form-submit {
+  display: block;
+  width: 100%;
+  max-width: 285px;
+  padding: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  margin: 20px auto;
+  color: #fff;
+  background: var(--color-green);
+}
