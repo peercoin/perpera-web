@@ -11,6 +11,7 @@ interface IState {
   isLoading: boolean;
   isOpen: boolean;
   wif: string;
+  originalHash?: string;
 }
 
 class RegisterPopup extends React.Component<{}, IState> {
@@ -36,7 +37,16 @@ class RegisterPopup extends React.Component<{}, IState> {
       this.setState({
         fileName: payload.fileName,
         hash: payload.hash,
-        isOpen: true
+        isOpen: true,
+        originalHash: ''
+      });
+    });
+    ObservableHelper.on('onUpdateFileHash', (payload: any) => {
+      this.setState({
+        fileName: payload.fileName,
+        hash: payload.hash,
+        isOpen: true,
+        originalHash: payload.originalHash
       });
     });
   }
@@ -48,7 +58,11 @@ class RegisterPopup extends React.Component<{}, IState> {
     const perperaService = new PerperaService();
 
     try {
-      await perperaService.setDocument(this.state.hash, this.state.wif);
+      if (this.state.originalHash) {
+        await perperaService.updateDocument(this.state.originalHash, this.state.hash, this.state.wif);
+      } else {
+        await perperaService.setDocument(this.state.hash, this.state.wif);
+      }
       this.setState({ isLoading: false });
     } catch(e) {
       if (e.toString().includes('Insufficient funds')) {
@@ -90,7 +104,7 @@ class RegisterPopup extends React.Component<{}, IState> {
               <label>Insert your WIF:</label>
               <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
-              <button className="form-submit">Register Document</button>
+              <button className="form-submit">{this.state.originalHash ? 'Update' : 'Register'} Document</button>
             </form>
 
             <p>After registering, you will have to wait up to 1 hour in order for it to fully propagate to the blockchain.</p>

@@ -1,16 +1,14 @@
-.AddComp {
+.UpdateComp {
   
 }
 
-.AddComp .add-btn {
-  width: 60px;
-  height: 60px;
+.UpdateComp .update-btn {
+  width: 40px;
+  height: 40px;
   background: var(--color-green);
   border-radius: 50%;
-  position: absolute;
-  top: 280px;
-  margin-top: -30px;
-  right: 50px;
+  position: relative;
+  margin: 40px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,15 +20,15 @@
   user-select: none;
 }
 
-.AddComp .add-btn:hover {
+.UpdateComp .update-btn:hover {
   transform: scale(1.05);
 }
 
-.AddComp .add-btn:active {
+.UpdateComp .update-btn:active {
   transform: scale(0.95);
 }
 
-.AddComp .add-btn .file {
+.UpdateComp .update-btn .file {
   position: absolute;
   top: 0;
   left: 0;
@@ -44,7 +42,7 @@
 }
 
 @media screen and (max-width: 545px) {
-  .AddComp .add-btn {
+  .UpdateComp .update-btn {
     right: 0;
   }
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Revision from '../Revision/Revision';
+import Update from '../Update/Update';
 import './ResultDetails.css';
 
 interface IProps {
@@ -9,8 +10,6 @@ interface IProps {
 class ResultDetails extends React.Component<IProps> {
   public render() {
     const lastUpdate = this.props.doc.transitions[this.props.doc.transitions.length - 1].formattedTime
-    // tslint:disable-next-line:no-console
-    console.log(this.props.doc);
     return (
       <div className="ResultDetailsComp">
         <div className="data">
@@ -31,6 +30,8 @@ class ResultDetails extends React.Component<IProps> {
         {this.props.doc.transitions.map((revision: any, i: number) => (
           <Revision isCurrent={i === 0} key={Math.random()} revision={revision} />
         ))}
+        <hr/>
+        <Update originalHash={this.props.doc.tag} />
       </div>
     );  
   }

@@ -139,3 +139,10 @@
 .form .form-submit:hover {
   background: var(--color-chalk);
 }
+
+@media screen and (max-width: 545px) {
+  .RegisterPopupComp {
+    display: block;
+    position: absolute;
+  }
+}

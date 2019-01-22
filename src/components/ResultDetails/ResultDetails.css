@@ -19,6 +19,7 @@
 }
 
 .ResultDetailsComp .value.green {
+  word-break: break-all;
   font-size: 17px;
   color: var(--color-green);
 }
@@ -32,4 +33,10 @@
 
 .ResultDetailsComp .panel.grey .data {
   margin-right: 3.8rem;
+}
+
+@media screen and (max-width: 545px) {
+  .ResultDetailsComp .value.green {
+    font-size: 15px;
+  }
 }
