@@ -25,10 +25,12 @@ class Add extends React.Component<{}, IState> {
 
     const file: File = e.target.files[0];
 
+    console.log(file);
+
     const fileBuffer = await this.getFileBuffer(file);
     const hash = sha256(fileBuffer);
 
-    ObservableHelper.fire('onNewFileHash', {hash, fileName: name});
+    ObservableHelper.fire('onNewFileHash', {hash, fileName: file.name});
 
     this.setState({ isLoading: false });
   }
