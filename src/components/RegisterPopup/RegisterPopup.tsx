@@ -88,7 +88,7 @@ class RegisterPopup extends React.Component<{}, IState> {
 
             <form className="form" onSubmit={this.handleForm}>
               <label>Insert your WIF:</label>
-              <input type="text" className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
+              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
               <button className="form-submit">Register Document</button>
             </form>
