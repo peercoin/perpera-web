@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Loader from 'src/components/Loader/Loader';
+import SuccessPopup from 'src/components/SuccessPopup/SuccessPopup';
 import ObservableHelper from 'src/helpers/Observable';
 import PerperaService from 'src/services/Perpera';
 import './RegisterPopup.css';
@@ -12,6 +13,7 @@ interface IState {
   isOpen: boolean;
   wif: string;
   originalHash?: string;
+  isSuccess: boolean;
 }
 
 class RegisterPopup extends React.Component<{}, IState> {
@@ -24,6 +26,7 @@ class RegisterPopup extends React.Component<{}, IState> {
       hash: '',
       isLoading: false,
       isOpen: false,
+      isSuccess: false,
       wif: '',
     }
 
@@ -63,12 +66,15 @@ class RegisterPopup extends React.Component<{}, IState> {
       } else {
         await perperaService.setDocument(this.state.hash, this.state.wif);
       }
-      this.setState({ isLoading: false });
+      this.setState({ isSuccess: true, isLoading: false });
     } catch(e) {
       if (e.toString().includes('Insufficient funds')) {
         this.setState({ errorMsg: 'Your wallet has no funds.',  isLoading: false });
         return;
       }
+
+      console.log(e);
+
       this.setState({ errorMsg: 'WIF invalid.',  isLoading: false });
     }
   }
@@ -85,6 +91,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     return (
       <div className={this.state.isOpen ? 'RegisterPopupComp open' : 'RegisterPopupComp'}>
         {this.state.isLoading && <Loader />}
+        {this.state.isSuccess && <SuccessPopup text="Your file got registered in the blockchain. Wait at least 10 minutes and use the file hash to check it's registry." />}
         {this.state.isOpen && (
           <div className="register-popup">
             <button className="close" onClick={this.close}><img src="/img/icon-close.svg" alt="Close Popup"/></button>
@@ -104,7 +111,7 @@ class RegisterPopup extends React.Component<{}, IState> {
               <label>Insert your WIF:</label>
               <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
-              <button className="form-submit">{this.state.originalHash ? 'Update' : 'Register'} Document</button>
+              <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>{this.state.originalHash ? 'Update' : 'Register'} Document</button>
             </form>
 
             <p>After registering, you will have to wait up to 1 hour in order for it to fully propagate to the blockchain.</p>

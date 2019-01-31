@@ -120,7 +120,7 @@
   resize: none;
 }
 
-.form .form-submit {
+.form-submit {
   display: block;
   width: 100%;
   max-width: 285px;
@@ -136,7 +136,7 @@
   cursor: pointer;
 }
 
-.form .form-submit:hover {
+.form-submit:hover {
   background: var(--color-chalk);
 }
 
