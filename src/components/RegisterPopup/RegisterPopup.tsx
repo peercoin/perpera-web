@@ -14,9 +14,12 @@ interface IState {
   wif: string;
   originalHash?: string;
   isSuccess: boolean;
+  fee?: any;
 }
 
 class RegisterPopup extends React.Component<{}, IState> {
+  private reference: any;
+
   constructor(props: any) {
     super(props);
 
@@ -31,6 +34,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     }
 
     this.handleForm = this.handleForm.bind(this);
+    this.handleFee = this.handleFee.bind(this);
     this.close = this.close.bind(this);
     this.handleWIF = this.handleWIF.bind(this);
   }
@@ -62,11 +66,41 @@ class RegisterPopup extends React.Component<{}, IState> {
 
     try {
       if (this.state.originalHash) {
-        await perperaService.updateDocument(this.state.originalHash, this.state.hash, this.state.wif);
+        const result = await perperaService.updateDocument(this.state.originalHash, this.state.hash, this.state.wif);
+        this.setState({
+          fee: result.fee,
+        });
       } else {
-        await perperaService.setDocument(this.state.hash, this.state.wif);
+        await this.reference.commit();
       }
       this.setState({ isSuccess: true, isLoading: false });
+    } catch(e) {
+      if (e.toString().includes('Insufficient funds')) {
+        this.setState({ errorMsg: 'Your wallet has no funds.',  isLoading: false });
+        return;
+      }
+
+      console.log(e);
+
+      this.setState({ errorMsg: 'WIF invalid.',  isLoading: false });
+    }
+  }
+
+  public async handleFee(e: any) {
+    e.preventDefault();
+    this.setState({ isLoading: true });
+
+    const perperaService = new PerperaService();
+
+    try {
+      const result = await perperaService.getFee(this.state.hash, this.state.wif);
+      
+      this.reference = result.reference;
+      
+      this.setState({
+        fee: result.fee,
+        isLoading: false
+      });
     } catch(e) {
       if (e.toString().includes('Insufficient funds')) {
         this.setState({ errorMsg: 'Your wallet has no funds.',  isLoading: false });
@@ -105,14 +139,22 @@ class RegisterPopup extends React.Component<{}, IState> {
               <div className="hash-string">{this.state.hash}</div>
             </div>
             
-            <p>Saving this hash on blockchain will cost you a transaction fee of <b className="bold-green">0.01 PPC</b>.</p>
+            {!this.state.fee && <p>Fee to be calculated.</p>}
+            {this.state.fee && <p>Saving this hash on blockchain will cost you a transaction fee of <b className="bold-green">{this.state.fee} PPC</b>.</p>}
 
-            <form className="form" onSubmit={this.handleForm}>
+            {!this.state.fee && <form className="form" onSubmit={this.handleFee}>
+              <label>Insert your WIF:</label>
+              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
+              {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
+              <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>Calculate Fee</button>
+            </form>}
+
+            {this.state.fee && <form className="form" onSubmit={this.handleForm}>
               <label>Insert your WIF:</label>
               <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
               <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>{this.state.originalHash ? 'Update' : 'Register'} Document</button>
-            </form>
+            </form>}
 
             <p>After registering, you will have to wait up to 1 hour in order for it to fully propagate to the blockchain.</p>
           </div>
