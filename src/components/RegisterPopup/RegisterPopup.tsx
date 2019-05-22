@@ -58,11 +58,21 @@ class RegisterPopup extends React.Component<{}, IState> {
     });
   }
 
+  public getNetwork() {
+    const isTestnet = window.location.hash === '#testnet';
+
+    if (isTestnet) {
+      return 'peercoin-testnet';
+    }
+
+    return 'peercoin';
+  }
+
   public async handleForm(e: any) {
     e.preventDefault();
     this.setState({ isLoading: true });
 
-    const perperaService = new PerperaService();
+    const perperaService = new PerperaService(this.getNetwork());
 
     try {
       if (this.state.originalHash) {
@@ -90,7 +100,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     e.preventDefault();
     this.setState({ isLoading: true });
 
-    const perperaService = new PerperaService();
+    const perperaService = new PerperaService(this.getNetwork());
 
     try {
       const result = await perperaService.getFee(this.state.hash, this.state.wif);
@@ -118,7 +128,15 @@ class RegisterPopup extends React.Component<{}, IState> {
   }
 
   public close() {
-    this.setState({ isOpen: false, isLoading: false });
+    this.setState({
+      errorMsg: '',
+      fileName: '',
+      hash: '',
+      isLoading: false,
+      isOpen: false,
+      isSuccess: false,
+      wif: '',
+    });
   }
 
   public render() {
