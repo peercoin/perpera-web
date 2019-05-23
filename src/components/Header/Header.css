@@ -49,12 +49,3 @@
 .HeaderComp .by img {
   margin-left: 1rem;
 }
-
-.HeaderComp .switch {
-  padding: 10px;
-}
-
-.HeaderComp .switch a,
-.HeaderComp .switch span {
-  color: #fff;
-}
