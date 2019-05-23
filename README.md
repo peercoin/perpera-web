@@ -1,6 +1,6 @@
 # Perpera Project
 
-A Data Audit Protocol based on PeerAssets.
+A Data Audit Protocol.
 
 ## Run locally:
 
@@ -9,4 +9,4 @@ npm install
 npm start
 ```
 
-Then open http://localhost:8080/
+Then open http://localhost:3000/
