@@ -4,6 +4,7 @@ import './SuccessPopup.css';
 interface IProps {
   text?: string;
   title?: string;
+  txid?: string;
 }
 
 interface IState {

@@ -15,6 +15,7 @@ interface IState {
   originalHash?: string;
   isSuccess: boolean;
   fee?: any;
+  txid: string;
 }
 
 class RegisterPopup extends React.Component<{}, IState> {
@@ -30,6 +31,7 @@ class RegisterPopup extends React.Component<{}, IState> {
       isLoading: false,
       isOpen: false,
       isSuccess: false,
+      txid: '',
       wif: '',
     }
 
@@ -77,11 +79,10 @@ class RegisterPopup extends React.Component<{}, IState> {
     try {
       if (this.state.originalHash) {
         const result = await perperaService.updateDocument(this.state.originalHash, this.state.hash, this.state.wif);
-        this.setState({
-          fee: result.fee,
-        });
+        console.log(result);
       } else {
-        await this.reference.commit();
+        const result = await this.reference.commit();
+        console.log(result);
       }
       this.setState({ isSuccess: true, isLoading: false });
     } catch(e) {
@@ -143,7 +144,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     return (
       <div className={this.state.isOpen ? 'RegisterPopupComp open' : 'RegisterPopupComp'}>
         {this.state.isLoading && <Loader />}
-        {this.state.isSuccess && <SuccessPopup text="Your file got registered in the blockchain. Wait at least 10 minutes and use the file hash to check it's registry." />}
+        {this.state.isSuccess && <SuccessPopup txid={this.state.txid} text="Your file got registered in the blockchain. Wait at least 10 minutes and use the file hash to check it's registry." />}
         {this.state.isOpen && (
           <div className="register-popup">
             <button className="close" onClick={this.close}><img src="/img/icon-close.svg" alt="Close Popup"/></button>

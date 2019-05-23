@@ -15,14 +15,14 @@ export default class PerperaService {
     const doc = new this.perpera.Document(hash, this.network);
     const spender = this.perpera.Spender.fromWIF(wif, this.network);
     await spender.sync();
-    return doc.updateContent({'sha2-256': hash}, spender);
+    return await doc.updateContent({'sha2-256': hash}, spender);
   }
 
   public async updateDocument(originalHash: string, hash: string, wif: string) {
     const doc = new this.perpera.Document(hash, this.network);
     const spender = this.perpera.Spender.fromWIF(wif, this.network);
     await spender.sync();
-    return doc.updateContent({'sha2-256': hash}, spender);
+    return await doc.updateContent({'sha2-256': hash}, spender);
   }
 
   public async getFee(hash: string, wif: string) {
