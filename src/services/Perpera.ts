@@ -4,7 +4,7 @@ export default class PerperaService {
 
   constructor(network?: string) {
     this.perpera = window['perpera'];
-    this.network = window['perpera'].networks[network || 'peercoin'];
+    this.network = network || window['perpera'].networks['peercoin'];
   }
 
   public getDocument(hash: string) {

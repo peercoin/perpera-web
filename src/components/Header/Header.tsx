@@ -1,27 +1,7 @@
 import * as React from 'react';
 import './Header.css';
 
-interface IState {
-  testnet: boolean;
-}
-
-class Header extends React.Component<{}, IState> {
-  constructor(props: any) {
-    super(props);
-
-    this.state = {
-      testnet: window.location.hash === '#testnet'
-    }
-  }
-
-  public componentWillMount() {
-    window.onhashchange = () => {
-      this.setState({
-        testnet: window.location.hash === '#testnet'
-      });
-    }
-  }
-
+class Header extends React.Component {
   public render() {
     return (
       <header className="HeaderComp">
@@ -31,10 +11,6 @@ class Header extends React.Component<{}, IState> {
           <div className="by">
             <span>by</span>
             <img src="/img/peercoin-logo.svg" alt="Peercoin" width="95" />
-          </div>
-          <div className="switch">
-            {!this.state.testnet && <a href="#testnet">Enable Testnet</a>}
-            {this.state.testnet && <a href="#">Disable Testnet</a>}
           </div>
         </div>
       </header>
