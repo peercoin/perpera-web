@@ -10,7 +10,7 @@ class Header extends React.Component {
           <h2 className="slogan">A Data Audit Protocol.</h2>
           <div className="by">
             <span>by</span>
-            <img src="/img/peercoin-logo.svg" alt="Peercoin" width="95" />
+            <img src="img/peercoin-logo.svg" alt="Peercoin" width="95" />
           </div>
         </div>
       </header>

@@ -78,7 +78,7 @@ class Search extends React.Component<{}, IState> {
         {this.state.isLoading && <Loader />}
         <input type="text" className="search-field" placeholder="Search document tag" onInput={this.setSearchText} />
         <button className="search-btn">
-          <img src="/img/icon-search.svg" alt="Search" width="24" />
+          <img src="img/icon-search.svg" alt="Search" width="24" />
         </button>
       </form>
     );

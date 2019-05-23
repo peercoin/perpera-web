@@ -129,9 +129,9 @@ class RegisterPopup extends React.Component<{}, IState> {
         {this.state.isSuccess && <SuccessPopup txid={this.state.txid} text="Your file got registered in the blockchain. Wait at least 10 minutes and use the file hash to check it's registry." />}
         {this.state.isOpen && (
           <div className="register-popup">
-            <button className="close" onClick={this.close}><img src="/img/icon-close.svg" alt="Close Popup"/></button>
+            <button className="close" onClick={this.close}><img src="img/icon-close.svg" alt="Close Popup"/></button>
             <div className="file">
-              <img src="/img/icon-file.svg" alt="File" className="file-icon"/>
+              <img src="img/icon-file.svg" alt="File" className="file-icon"/>
               <span>{this.state.fileName}</span>
             </div>
             
