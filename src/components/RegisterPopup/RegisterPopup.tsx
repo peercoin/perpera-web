@@ -157,7 +157,7 @@ class RegisterPopup extends React.Component<{}, IState> {
               <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>{this.state.originalHash ? 'Update' : 'Register'} Document</button>
             </form>}
 
-            <p>After registering, you will have to wait up to 1 hour in order for it to fully propagate to the blockchain.</p>
+            <p>After registering, you will have to wait for at least one new block to be sure your entry is registered with the blockchain.</p>
           </div>
         )}
       </div>
