@@ -24,6 +24,10 @@ class Revision extends React.Component<IProps> {
           <div className="revision-title">Date Issued:</div>
           <div className="revision-value">{this.props.revision.formattedTime}</div>
         </div>
+        <div className="revision-info" key={Math.random()}>
+          <div className="revision-title">Owner:</div>
+          <div className="revision-value">{this.props.revision.state.owner}</div>
+        </div>
       </div>
     );
   }
