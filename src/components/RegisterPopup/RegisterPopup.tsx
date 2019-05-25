@@ -145,14 +145,14 @@ class RegisterPopup extends React.Component<{}, IState> {
 
             {!this.state.fee && <form className="form" onSubmit={this.handleFee}>
               <label>Insert your WIF:</label>
-              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
+              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif.trim()} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
               <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>Calculate Fee</button>
             </form>}
 
             {this.state.fee && <form className="form" onSubmit={this.handleForm}>
               <label>Insert your WIF:</label>
-              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif} onChange={this.handleWIF} />
+              <textarea className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={this.state.wif.trim()} onChange={this.handleWIF} />
               {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
               <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>{this.state.originalHash ? 'Update' : 'Register'} Document</button>
             </form>}
