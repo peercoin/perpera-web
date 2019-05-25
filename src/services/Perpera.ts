@@ -31,7 +31,7 @@ export default class PerperaService {
     await spender.sync();
     const update = await doc.considerUpdatingContent({'sha2-256': hash}, spender);
     return {
-      fee: (update.getFee() / 1000000).toFixed(8),
+      fee: (update.getFee() / 10**6),
       reference: update
     }
   }
