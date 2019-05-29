@@ -16,3 +16,7 @@ npm start
 ```
 
 Then open http://localhost:3000/
+
+## Deploy:
+
+`npm run deploy`
