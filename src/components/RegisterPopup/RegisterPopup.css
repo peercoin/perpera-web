@@ -58,7 +58,6 @@
   font-weight: bold;
   text-align: center;
   color: var(--color-red);
-
 }
 
 .RegisterPopupComp .register-popup .file {
@@ -145,4 +144,18 @@
     display: block;
     position: absolute;
   }
+}
+
+.eye-slash {
+  content: url(/img/eye-slash-regular.svg);
+  width: 16px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.eye-regular {
+  content: url(/img/eye-regular.svg);
+  width: 16px;
+  margin-left: 1rem;
+  cursor: pointer;
 }

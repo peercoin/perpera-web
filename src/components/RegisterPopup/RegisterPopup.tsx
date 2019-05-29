@@ -137,6 +137,18 @@ class RegisterPopup extends React.Component<{}, IState> {
     this.setState({ isOpen: false, isLoading: false });
   }
 
+  public renderEye = () => {
+    return this.state.showPassword ? (
+      <i className="eye-slash" onClick={this.toggleShowPassword} />
+    ) : (
+      <i className="eye-regular" onClick={this.toggleShowPassword} />
+    );
+  };
+
+  public toggleShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
+
   public render() {
     const { wif, showPassword } = this.state;
     return (
@@ -177,7 +189,7 @@ class RegisterPopup extends React.Component<{}, IState> {
 
             {!this.state.fee && (
               <form className="form" onSubmit={this.handleFee}>
-                <label>Insert your WIF:</label>
+                <label>Insert your WIF: {this.renderEye()}</label>
                 <input
                   className="form-field"
                   autoCorrect="false"
@@ -200,7 +212,7 @@ class RegisterPopup extends React.Component<{}, IState> {
 
             {this.state.fee && (
               <form className="form" onSubmit={this.handleForm}>
-                <label>Insert your WIF:</label>
+                <label>Insert your WIF: {this.renderEye()}</label>
                 <input
                   className="form-field"
                   autoCorrect="false"
