@@ -43,7 +43,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     this.handleWIF = this.handleWIF.bind(this);
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     ObservableHelper.on("onNewFileHash", (payload: any) => {
       this.setState({
         fileName: payload.fileName,
@@ -180,23 +180,63 @@ class RegisterPopup extends React.Component<{}, IState> {
             </div>
 
             {!this.state.fee && <p>Fee to be calculated.</p>}
-            {this.state.fee && <p>Saving this hash on blockchain will cost you a transaction fee of <b className="bold-green">{this.state.fee} PPC</b>.</p>}
+            {this.state.fee && (
+              <p>
+                Saving this hash on blockchain will cost you a transaction fee
+                of <b className="bold-green">{this.state.fee} PPC</b>.
+              </p>
+            )}
 
-            {!this.state.fee && <form className="form" onSubmit={this.handleFee}>
-            <label>Insert your WIF:{this.renderEye()}</label>
-              <input className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={wif.trim()} onChange={this.handleWIF} type={showPassword ? "text":"password"} />
-              {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
-              <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>Calculate Fee</button>
-            </form>}
+            {!this.state.fee && (
+              <form className="form" onSubmit={this.handleFee}>
+                <label>Insert your WIF:{this.renderEye()}</label>
+                <input
+                  className="form-field"
+                  autoCorrect="false"
+                  placeholder="Type WIF here..."
+                  value={wif.trim()}
+                  onChange={this.handleWIF}
+                  type={showPassword ? "text" : "password"}
+                />
+                {this.state.errorMsg && (
+                  <div className="error-msg">{this.state.errorMsg}</div>
+                )}
+                <button
+                  className="form-submit"
+                  disabled={this.state.isLoading || this.state.isSuccess}
+                >
+                  Calculate Fee
+                </button>
+              </form>
+            )}
 
-            {this.state.fee && <form className="form" onSubmit={this.handleForm}>
-              <label>Insert your WIF:{this.renderEye()}</label>
-              <input className="form-field" autoCorrect="false" placeholder="Type WIF here..." value={wif.trim()} onChange={this.handleWIF} type={showPassword ? "text":"password"} />
-              {this.state.errorMsg && <div className="error-msg">{this.state.errorMsg}</div>}
-              <button className="form-submit" disabled={this.state.isLoading || this.state.isSuccess}>{this.state.originalHash ? 'Update' : 'Register'} Document</button>
-            </form>}
+            {this.state.fee && (
+              <form className="form" onSubmit={this.handleForm}>
+                <label>Insert your WIF:{this.renderEye()}</label>
+                <input
+                  className="form-field"
+                  autoCorrect="false"
+                  placeholder="Type WIF here..."
+                  value={wif.trim()}
+                  onChange={this.handleWIF}
+                  type={showPassword ? "text" : "password"}
+                />
+                {this.state.errorMsg && (
+                  <div className="error-msg">{this.state.errorMsg}</div>
+                )}
+                <button
+                  className="form-submit"
+                  disabled={this.state.isLoading || this.state.isSuccess}
+                >
+                  {this.state.originalHash ? "Update" : "Register"} Document
+                </button>
+              </form>
+            )}
 
-            <p>After registering, you will have to wait for at least one new block to be sure your entry is registered with the blockchain.</p>
+            <p>
+              After registering, you will have to wait for at least one new
+              block to be sure your entry is registered with the blockchain.
+            </p>
           </div>
         )}
       </div>
