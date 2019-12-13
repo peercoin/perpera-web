@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Add from 'src/components/Add/Add';
+import Status from 'src/components/Status/Status';
 import ObservableHelper from 'src/helpers/Observable';
 import Header from '../Header/Header';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
@@ -22,6 +23,7 @@ class App extends React.Component {
         <Header />
         <Search />
         <Add />
+        <Status />
         <Result />
         <RegisterPopup />
       </div>
