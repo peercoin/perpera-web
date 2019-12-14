@@ -37,8 +37,8 @@ class Status extends React.Component<{}, IState> {
     return (
       <div className="StatusComp">
         {this.state.isLoading && <Loader />}
-        {this.state.apiStatus && <div className="status-btn"><img src="img/status_on.png"/></div>}
-        {!this.state.apiStatus && <div className="status-btn"><img src="img/status_off.png"/></div>}
+        {this.state.apiStatus && <div className="status-btn"><img src="img/status_on.svg"/></div>}
+        {!this.state.apiStatus && <div className="status-btn"><img src="img/status_off.svg"/></div>}
       </div>
     );
   }
