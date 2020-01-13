@@ -1,4 +1,3 @@
-import { sha256 } from 'js-sha256';
 import * as React from 'react';
 import Loader from 'src/components/Loader/Loader';
 import ObservableHelper from 'src/helpers/Observable';
@@ -32,9 +31,8 @@ class Update extends React.Component<IProps, IState> {
     console.log(file);
 
     const fileBuffer = await this.getFileBuffer(file);
-    const hash = sha256(fileBuffer);
 
-    ObservableHelper.fire('onUpdateFileHash', {originalHash: this.props.originalHash, hash, fileName: file.name});
+    ObservableHelper.fire('onUpdateFileHash', {originalHash: this.props.originalHash, fileBuffer, fileName: file.name});
 
     this.setState({ isLoading: false });
   }

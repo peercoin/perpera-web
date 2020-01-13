@@ -92,6 +92,11 @@
   font-size: 1.2rem;
 }
 
+.RegisterPopupComp .register-popup .hash .label:hover{
+  background: var(--color-green);
+  cursor: pointer;
+}
+
 .RegisterPopupComp .register-popup .hash .hash-string {
   color: var(--color-chalk);
   word-break: break-all;

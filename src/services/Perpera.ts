@@ -11,25 +11,25 @@ export default class PerperaService {
     return new this.perpera.Document(hash, this.network);
   }
 
-  public async setDocument(hash: string, wif: string) {
+  public async setDocument(hash: string, hashAlgo: string, wif: string) {
     const doc = new this.perpera.Document(hash, this.network);
     const spender = this.perpera.Spender.fromWIF(wif.trim(), this.network);
     await spender.sync();
-    return await doc.updateContent({'sha2-256': hash}, spender);
+    return await doc.updateContent({hashAlgo: hash}, spender);
   }
 
-  public async updateDocument(originalHash: string, hash: string, wif: string) {
+  public async updateDocument(originalHash: string, hash: string, hashAlgo: string, wif: string) {
     const doc = new this.perpera.Document(hash, this.network);
     const spender = this.perpera.Spender.fromWIF(wif.trim(), this.network);
     await spender.sync();
-    return await doc.updateContent({'sha2-256': hash}, spender);
+    return await doc.updateContent({hashAlgo: hash}, spender);
   }
 
-  public async getFee(hash: string, wif: string) {
+  public async getFee(hash: string, hashAlgo: string, wif: string) {
     const doc = new this.perpera.Document(hash, this.network);
     const spender = this.perpera.Spender.fromWIF(wif.trim(), this.network);
     await spender.sync();
-    const update = await doc.considerUpdatingContent({'sha2-256': hash}, spender);
+    const update = await doc.considerUpdatingContent({hashAlgo: hash}, spender);
     return {
       fee: (update.getFee() / 10**6),
       reference: update
