@@ -124,6 +124,26 @@
   resize: none;
 }
 
+.form .btn-getraw{
+  display: block;
+  width: 100%;
+  max-width: 285px;
+  padding: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  margin: 20px auto;
+  color: #fff;
+  background: var(--color-green);
+  transition: background 0.1s linear;
+  cursor: pointer;
+}
+.form .btn-getraw:disabled{
+  background: var(--color-chalk);
+  cursor: default;
+}
+
 .form-submit {
   display: block;
   width: 100%;
@@ -141,7 +161,22 @@
 }
 
 .form-submit:hover {
-  background: var(--color-chalk);
+  background: var(--color-chalk-60);
+}
+
+.show-raw {
+  margin: 10px;
+}
+.show-raw label {
+
+}
+.show-raw div {
+  overflow: auto;
+  word-break: break-word;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: var(--color-chalk-04);
 }
 
 @media screen and (max-width: 545px) {

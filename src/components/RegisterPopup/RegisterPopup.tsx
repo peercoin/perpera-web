@@ -18,12 +18,13 @@ interface IState {
   hashAlgo: string;
   isLoading: boolean;
   isOpen: boolean;
-  wif: string;
   originalHash?: string;
   isSuccess: boolean;
   fee?: any;
-  txid: string;
+  rawTx: string;
   showPassword: boolean;
+  txid: string;
+  wif: string;
 }
 
 class RegisterPopup extends React.Component<{}, IState> {
@@ -41,6 +42,7 @@ class RegisterPopup extends React.Component<{}, IState> {
       isLoading: false,
       isOpen: false,
       isSuccess: false,
+      rawTx: "",
       showPassword: false,
       txid: "",
       wif: "",
@@ -51,6 +53,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     this.close = this.close.bind(this);
     this.handleWIF = this.handleWIF.bind(this);
     this.changeHash = this.changeHash.bind(this);
+    this.handleRaw = this.handleRaw.bind(this);
   }
 
   public getHash(hashAlgo: string, buffer: ArrayBuffer){
@@ -98,6 +101,37 @@ class RegisterPopup extends React.Component<{}, IState> {
     });
   }
 
+  public copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  public async handleRaw(e: any){
+    e.preventDefault();
+    this.setState({ isLoading: true });
+    const perperaService = new PerperaService();
+    try {
+      const result = await perperaService.getRawTransaction(
+        this.state.hash,
+        this.state.hashAlgo,
+        this.state.wif
+      );
+      this.setState({ isLoading: false , rawTx: result});
+      this.copyMessage(result);
+    } catch (e) {
+      this.setState({ errorMsg: "WIF invalid.", isLoading: false });
+    }
+  }
+
   public async handleForm(e: any) {
     e.preventDefault();
     this.setState({ isLoading: true });
@@ -112,9 +146,11 @@ class RegisterPopup extends React.Component<{}, IState> {
           this.state.hashAlgo,
           this.state.wif
         );
+        this.setState({txid: result});
         console.log(result);
       } else {
         const result = await this.reference.commit();
+        this.setState({txid: result});
         console.log(result);
       }
       this.setState({ isSuccess: true, isLoading: false });
@@ -168,7 +204,7 @@ class RegisterPopup extends React.Component<{}, IState> {
   }
 
   public handleWIF(e: any) {
-    this.setState({ errorMsg: "", wif: e.target.value });
+    this.setState({ errorMsg: "", wif: e.target.value, rawTx: "" });
   }
 
   public close() {
@@ -286,6 +322,19 @@ class RegisterPopup extends React.Component<{}, IState> {
                 />
                 {this.state.errorMsg && (
                   <div className="error-msg">{this.state.errorMsg}</div>
+                )}
+                {this.state.rawTx === "" && (<button
+                  className="btn-getraw"
+                  disabled={this.state.isLoading}
+                  onClick={this.handleRaw}
+                >
+                  Show Raw Transaction
+                </button>)}
+                {this.state.rawTx !== "" && (
+                  <div className="show-raw">
+                    <label>Raw Transaction</label>
+                    <div>{this.state.rawTx}</div>
+                  </div>
                 )}
                 <button
                   className="form-submit"
