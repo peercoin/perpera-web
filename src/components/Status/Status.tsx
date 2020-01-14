@@ -11,13 +11,13 @@ class Status extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      apiStatus: true,
+      apiStatus: false,
       isLoading: false
     }
   }
   public componentDidMount(){
     // simplest solution : used getaddress API with old address
-    fetch("https://explorer.peercoin.net/ext/getaddress/PEi5LPN6K9oZDKe9CVgBDoPyX2uvkYyiZ2")
+    fetch("https://blockbook.peercoin.net/api")
        .then()
        .then(
          (result) => {

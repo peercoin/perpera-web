@@ -1,3 +1,8 @@
+import {sha256} from "js-sha256";
+import {sha3_256} from 'js-sha3';
+import {sha3_512} from 'js-sha3';
+import {sha512} from "js-sha512";
+
 import * as React from "react";
 import Loader from "src/components/Loader/Loader";
 import SuccessPopup from "src/components/SuccessPopup/SuccessPopup";
@@ -7,8 +12,10 @@ import "./RegisterPopup.css";
 
 interface IState {
   errorMsg: string;
+  fileBuffer: ArrayBuffer;
   fileName: string;
   hash: string;
+  hashAlgo: string;
   isLoading: boolean;
   isOpen: boolean;
   wif: string;
@@ -27,35 +34,64 @@ class RegisterPopup extends React.Component<{}, IState> {
 
     this.state = {
       errorMsg: "",
+      fileBuffer: new ArrayBuffer(1),
       fileName: "",
       hash: "",
+      hashAlgo: "sha2-256",
       isLoading: false,
       isOpen: false,
       isSuccess: false,
       showPassword: false,
       txid: "",
-      wif: ""
+      wif: "",
     };
 
     this.handleForm = this.handleForm.bind(this);
     this.handleFee = this.handleFee.bind(this);
     this.close = this.close.bind(this);
     this.handleWIF = this.handleWIF.bind(this);
+    this.changeHash = this.changeHash.bind(this);
+  }
+
+  public getHash(hashAlgo: string, buffer: ArrayBuffer){
+    if(hashAlgo === "sha2-256"){
+      const hash = sha256(buffer);
+      return hash;
+    }
+    if(hashAlgo === "sha2-512"){
+      const hash = sha512(buffer);
+      return hash;
+    }
+    if(hashAlgo === "sha3-256"){
+      const hash = sha3_256(buffer);
+      return hash;
+    }
+    if(hashAlgo === "sha3-512"){
+      const hash = sha3_512(buffer);
+      return hash;
+    }
+
+    return "";
   }
 
   public componentDidMount() {
     ObservableHelper.on("onNewFileHash", (payload: any) => {
+      console.log(payload.fileBuffer);
       this.setState({
+        fileBuffer: payload.fileBuffer,
         fileName: payload.fileName,
-        hash: payload.hash,
+        hash: this.getHash("sha2-256", payload.fileBuffer),
+        hashAlgo: "sha2-256",
         isOpen: true,
         originalHash: ""
       });
     });
     ObservableHelper.on("onUpdateFileHash", (payload: any) => {
       this.setState({
+        fileBuffer: payload.fileBuffer,
         fileName: payload.fileName,
-        hash: payload.hash,
+        hash: this.getHash("sha2-256", payload.fileBuffer),
+        hashAlgo: "sha2-256",
         isOpen: true,
         originalHash: payload.originalHash
       });
@@ -73,6 +109,7 @@ class RegisterPopup extends React.Component<{}, IState> {
         const result = await perperaService.updateDocument(
           this.state.originalHash,
           this.state.hash,
+          this.state.hashAlgo,
           this.state.wif
         );
         console.log(result);
@@ -105,6 +142,7 @@ class RegisterPopup extends React.Component<{}, IState> {
     try {
       const result = await perperaService.getFee(
         this.state.hash,
+        this.state.hashAlgo,
         this.state.wif
       );
 
@@ -135,6 +173,31 @@ class RegisterPopup extends React.Component<{}, IState> {
 
   public close() {
     this.setState({ isOpen: false, isLoading: false });
+  }
+
+  public nextHashAlgo(hashAlgo: string) {
+    if(hashAlgo === "sha2-256"){
+      return "sha2-512";
+    }
+    if(hashAlgo === "sha2-512"){
+      return "sha3-256";
+    }
+    if(hashAlgo === "sha3-256"){
+      return "sha3-512";
+    }
+    if(hashAlgo === "sha3-512"){
+      return "sha2-256";
+    }
+    return "";
+  }
+
+  public changeHash() {
+    const hashAlgo = this.nextHashAlgo(this.state.hashAlgo);
+    this.setState({
+      fee: undefined,
+      hash: this.getHash(hashAlgo, this.state.fileBuffer),
+      hashAlgo
+    });
   }
 
   public renderEye = () => {
@@ -175,7 +238,7 @@ class RegisterPopup extends React.Component<{}, IState> {
             </div>
 
             <div className="hash">
-              <div className="label">sha256</div>
+              <div className="label" onClick={this.changeHash} title={"change to " + this.nextHashAlgo(this.state.hashAlgo)}>{this.state.hashAlgo}</div>
               <div className="hash-string">{this.state.hash}</div>
             </div>
 
