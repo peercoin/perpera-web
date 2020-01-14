@@ -35,4 +35,11 @@ export default class PerperaService {
       reference: update
     }
   }
+
+  public async getRawTransaction(hash: string, hashAlgo: string, wif: string) {
+    const doc = new this.perpera.Document(hash, this.network);
+    const spender = this.perpera.Spender.fromWIF(wif.trim(), this.network);
+    await spender.sync();
+    return await doc.getRawTransaction({hashAlgo: hash}, spender);
+  }
 }
