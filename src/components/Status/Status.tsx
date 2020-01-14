@@ -17,7 +17,7 @@ class Status extends React.Component<{}, IState> {
   }
   public componentDidMount(){
     // simplest solution : used getaddress API with old address
-    fetch("https://cors-anywhere.herokuapp.com/https://blockbook.peercoin.net/api")
+    fetch("https://blockbook.peercoin.net/api")
        .then()
        .then(
          (result) => {
