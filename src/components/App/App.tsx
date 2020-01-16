@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import Result from '../Result/Result';
 import Search from '../Search/Search';
+import Test from '../Test/Test';
 import './App.css';
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
         <Status />
         <Result />
         <RegisterPopup />
+        <Test />
       </div>
     );
   }
