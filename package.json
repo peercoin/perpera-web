@@ -27,6 +27,14 @@
     "@types/react-dom": "^16.0.10",
     "gh-pages": "^2.0.1",
     "node-sass": "^4.10.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "@ledgerhq/hw-transport-u2f": "^4.63.2",
+    "@types/ledgerhq__hw-transport-u2f": "^4.21.1",
+    "@ledgerhq/hw-transport-webusb": "^4.63.2",
+    "@types/ledgerhq__hw-transport-webusb": "^4.21.1",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.0.16",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react-app": "^9.0.0"
   }
 }

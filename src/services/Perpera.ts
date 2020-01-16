@@ -1,3 +1,4 @@
+import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
 export default class PerperaService {
   private perpera: any;
   private network: string;
@@ -41,5 +42,11 @@ export default class PerperaService {
     const spender = this.perpera.Spender.fromWIF(wif.trim(), this.network);
     await spender.sync();
     return await doc.getRawTransaction({hashAlgo: hash}, spender);
+  }
+
+  public async getWalletPublicKey() {
+    const transport = await TransportWebUSB.create();
+    const appPpc = new this.perpera.AppPpc(transport);
+    return await appPpc.getWalletPublicKey(transport, "44'/0'/0'/0");
   }
 }
