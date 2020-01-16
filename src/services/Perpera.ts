@@ -47,6 +47,6 @@ export default class PerperaService {
   public async getWalletPublicKey() {
     const transport = await TransportWebUSB.create();
     const appPpc = new this.perpera.AppPpc(transport);
-    return await appPpc.getWalletPublicKey(transport, "44'/0'/0'/0");
+    return await appPpc.getWalletPublicKey("44'/0'/0'/0");
   }
 }
