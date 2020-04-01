@@ -44,7 +44,7 @@ class Status extends React.Component<{}, IState> {
         )}
         {!this.state.apiStatus && (
           <div className="status-btn">
-            <img src="img/status_off.svg/" alt="disconnected" />
+            <img src="img/status_off.svg" alt="disconnected" />
           </div>
         )}
       </div>
