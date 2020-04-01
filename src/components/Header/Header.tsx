@@ -16,7 +16,7 @@ class Header extends React.Component {
             href="https://github.com/PeerAssets/peerassets-rfcs/blob/master/0009-data-audit.md"
             className="slogan"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             style={{ marginTop: "20px" }}
           >
             How it works
