@@ -5,28 +5,40 @@
   "private": true,
   "dependencies": {
     "js-sha256": "^0.9.0",
-    "js-sha512": "^0.8.0",
     "js-sha3": "^0.8.0",
+    "js-sha512": "^0.8.0",
     "luxon": "^1.7.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts-ts": "3.1.0"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "deploy": "npm run build && gh-pages -d build"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.9",
+    "@types/jest": "^23.3.14",
     "@types/luxon": "^1.4.1",
-    "@types/node": "^10.12.10",
-    "@types/react": "^16.7.7",
-    "@types/react-dom": "^16.0.10",
+    "@types/node": "^10.17.18",
+    "@types/react": "^16.9.31",
+    "@types/react-dom": "^16.9.6",
     "gh-pages": "^2.0.1",
     "node-sass": "^4.13.1",
-    "typescript": "^3.1.6"
+    "typescript": "^3.8.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
