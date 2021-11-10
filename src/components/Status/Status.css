@@ -1,0 +1,21 @@
+.StatusComp {
+  
+}
+
+.StatusComp .status-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: 30px;
+  margin-top: -30px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #fff;
+  transition: transform 0.5s cubic-bezier(.09,.73,.37,.99);
+  cursor: pointer;
+  user-select: none;
+}

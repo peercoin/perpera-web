@@ -1,0 +1,138 @@
+.AddComp {
+}
+
+.AddComp .add-btn {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 280px;
+  margin-top: -30px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s cubic-bezier(0.09, 0.73, 0.37, 0.99);
+  cursor: pointer;
+  user-select: none;
+}
+
+.AddComp .add-btn:hover {
+  transform: scale(1.05);
+}
+
+.AddComp .add-btn:active {
+  transform: scale(0.95);
+}
+
+.AddComp .add-btn .file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.AddComp .add-uri {
+  right: 120px;
+}
+
+.AddComp .add-file {
+  right: 120px;
+  top: 345px;
+}
+
+.AddComp .add-icon {
+  width: 60px;
+}
+
+.AddComp .input-uri {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-chalk-60);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  z-index: +1;
+}
+
+.AddComp .input-dlg {
+  position: relative;
+  width: 100%;
+  max-width: 446px;
+  max-height: 500px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.AddComp .input-dlg .close {
+  width: 24px;
+  height: 24px;
+  border: none;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding: 0;
+  background: none;
+}
+
+.AddComp .input-dlg div {
+  margin-top: 15px;
+}
+
+.AddComp .input-dlg .form-field {
+  height: 50px;
+}
+
+.AddComp .input-dlg .error-msg {
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-red);
+}
+
+@media screen and (max-width: 545px) {
+  .AddComp .add-btn {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .AddComp .add-uri,
+  .AddComp .add-file {
+    right: 10px;
+  }
+  .AddComp .add-uri {
+    top: 320px;
+  }
+  .AddComp .add-file {
+    top: 390px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .AddComp .add-btn,
+  .AddComp .add-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .AddComp .add-uri {
+    top: 345px;
+  }
+  .AddComp .add-file {
+    top: 390px;
+  }
+}

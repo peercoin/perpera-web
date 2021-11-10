@@ -1,0 +1,42 @@
+.ResultDetailsComp {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.16);
+  padding: 1.8rem 1.7rem;
+  opacity: 0;
+  animation: fade-in-scale 0.5s var(--easing-natural) forwards;
+  animation-delay: 0.1s;
+}
+
+.ResultDetailsComp .label {
+  font-size: 15px;
+  color: var(--color-dark);
+}
+
+.ResultDetailsComp .value {
+  font-size: 15px;
+  color: var(--color-dark);
+}
+
+.ResultDetailsComp .value.green {
+  word-break: break-all;
+  font-size: 17px;
+  color: var(--color-green);
+}
+
+.ResultDetailsComp .panel.grey {
+  background: rgba(30, 38, 31, 0.04);
+  padding: 2.2rem 1.7rem;
+  display: flex;
+  margin: 1.8rem -1.7rem;
+}
+
+.ResultDetailsComp .panel.grey .data {
+  margin-right: 3.8rem;
+}
+
+@media screen and (max-width: 545px) {
+  .ResultDetailsComp .value.green {
+    font-size: 15px;
+  }
+}

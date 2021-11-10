@@ -1,0 +1,10 @@
+:root {
+  --color-chalk: #2B343E;
+  --color-chalk-60: rgba(43, 52, 62, 0.6);
+  --color-chalk-04: rgba(43, 52, 62, 0.04);
+  --color-chalk-15: rgba(43, 52, 62, 0.15);
+  --color-dark: #1E261F;
+  --color-green: #3CB054;
+  --color-red: #c72b2b;
+  --easing-natural: cubic-bezier(.01,.74,.46,1);
+}

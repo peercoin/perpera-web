@@ -1,0 +1,18 @@
+.ResultComp {
+  margin-top: 3.5rem;
+}
+
+.ResultComp .waiting-message {
+  font-size: 3.3rem;
+  font-weight: bold;
+  color: var(--color-chalk);
+  opacity: 0;
+  text-align: center;
+  margin-top: 9rem;
+  animation: fade-in-scale 0.5s var(--easing-natural) forwards;
+  animation-delay: 0.1s;
+}
+
+.ResultComp .waiting-message span {
+  opacity: 0.25;
+}
