@@ -3,7 +3,7 @@ import * as React from 'react';
 import ObservableHelper from '../../helpers/Observable';
 import Loader from '../Loader/Loader';
 import './Search.css';
-
+import iconSearch from "../../img/icon-search.svg";
 interface IState {
   searchText: string;
   networkType: string;
@@ -76,7 +76,7 @@ class Search extends React.Component<{}, IState> {
         {this.state.isLoading && <Loader />}
         <input type="text" className="search-field" placeholder="Search document tag" onInput={this.setSearchText} />
         <button className="search-btn">
-          <img src="img/icon-search.svg" alt="Search" width="24" />
+          <img src={iconSearch} alt="Search" width="24" />
         </button>
       </form>
     );

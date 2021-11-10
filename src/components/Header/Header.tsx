@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./Header.css";
+import peercoinLogo from "../../img/peercoin-logo.svg";
 
 class Header extends React.Component {
   public render() {
@@ -10,7 +11,7 @@ class Header extends React.Component {
           <h2 className="slogan">A Data Audit Protocol.</h2>
           <div className="by">
             <span>by</span>
-            <img src="img/peercoin-logo.svg" alt="Peercoin" width="95" />
+            <img src={peercoinLogo} alt="Peercoin" width="95" />
           </div>
           <a
             href="https://github.com/PeerAssets/peerassets-rfcs/blob/master/0009-data-audit.md"

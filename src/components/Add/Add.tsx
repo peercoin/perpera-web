@@ -2,6 +2,9 @@ import * as React from "react";
 import Loader from "../Loader/Loader";
 import ObservableHelper from "../../helpers/Observable";
 import "./Add.css";
+import attachFile from "../../img/attach-file.svg";
+import attachUri from "../../img/attach-uri.svg";
+import imgClose from "../../img/attach-uri.svg";
 
 interface IState {
   errorMsg: string;
@@ -139,7 +142,7 @@ class Add extends React.Component<{}, IState> {
         <div className="add-btn add-file" title="input file">
           <img
             className="add-icon"
-            src="/img/attach-file.svg"
+            src={attachFile}
             alt="attach-file"
           />
           <input className="file" type="file" onChange={this.handleFile} />
@@ -147,7 +150,7 @@ class Add extends React.Component<{}, IState> {
         <div className="add-btn add-uri" title="input uri">
           <img
             className="add-icon"
-            src="/img/attach-uri.svg"
+            src={attachUri}
             alt="attach uri"
           />
           <input className="file" type="button" onClick={this.changeFileType} />
@@ -156,7 +159,7 @@ class Add extends React.Component<{}, IState> {
           <div className="input-uri">
             <div className="input-dlg">
               <button className="close" onClick={this.changeFileType}>
-                <img src="img/icon-close.svg" alt="Close Popup" />
+                <img src={imgClose} alt="Close Popup" />
               </button>
               <form className="form" onSubmit={this.handleFileUri}>
                 <div>

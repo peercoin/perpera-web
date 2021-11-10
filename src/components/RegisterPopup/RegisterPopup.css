@@ -167,9 +167,7 @@
 .show-raw {
   margin: 10px;
 }
-.show-raw label {
 
-}
 .show-raw div {
   overflow: auto;
   word-break: break-word;
@@ -187,14 +185,14 @@
 }
 
 .eye-slash {
-  /* content: url(../img/eye-slash-regular.svg); */
+  content: url(../../img/eye-slash-regular.svg);
   width: 16px;
   margin-left: 1rem;
   cursor: pointer;
 }
 
 .eye-regular {
-  /* content: url(../img/eye-regular.svg); */
+  content: url(../../img/eye-regular.svg);
   width: 16px;
   margin-left: 1rem;
   cursor: pointer;

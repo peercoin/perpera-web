@@ -9,6 +9,8 @@ import SuccessPopup from "../SuccessPopup/SuccessPopup";
 import ObservableHelper from "../../helpers/Observable";
 import PerperaService from "../../services/Perpera";
 import "./RegisterPopup.css";
+import iconClose from "../../img/icon-close.svg";
+import iconFile from "../../img/icon-file.svg";
 
 interface IState {
   errorMsg: string;
@@ -266,10 +268,10 @@ class RegisterPopup extends React.Component<{}, IState> {
         {this.state.isOpen && (
           <div className="register-popup">
             <button className="close" onClick={this.close}>
-              <img src="img/icon-close.svg" alt="Close Popup" />
+              <img src={iconClose} alt="Close Popup" />
             </button>
             <div className="file">
-              <img src="img/icon-file.svg" alt="File" className="file-icon" />
+              <img src={iconFile} alt="File" className="file-icon" />
               <span>{this.state.fileName}</span>
             </div>
 

@@ -1,6 +1,8 @@
 import * as React from "react";
 import Loader from "../Loader/Loader";
 import "./Status.css";
+import statusOn from "../../img/status_on.svg";
+import statusOff from "../../img/status_off.svg";
 
 interface IState {
   apiStatus: boolean;
@@ -39,12 +41,12 @@ class Status extends React.Component<{}, IState> {
         {this.state.isLoading && <Loader />}
         {this.state.apiStatus && (
           <div className="status-btn">
-            <img src="img/status_on.svg" alt="connected" />
+            <img src={statusOn} alt="connected" />
           </div>
         )}
         {!this.state.apiStatus && (
           <div className="status-btn">
-            <img src="img/status_off.svg" alt="disconnected" />
+            <img src={statusOff} alt="disconnected" />
           </div>
         )}
       </div>
